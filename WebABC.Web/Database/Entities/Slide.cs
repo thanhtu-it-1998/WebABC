@@ -10,5 +10,7 @@ namespace WebABC.Web.Database.Entities
         public int Id { get; set; }
         public string Link { get; set; }
         public string Image { get; set; }
+        public string Context { get; set; }
+        public int Sale { get; set; }
     }
 }

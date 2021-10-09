@@ -97,9 +97,11 @@ namespace WebABC.Web.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("IdBill");
+
                     b.HasIndex("IdProduct");
 
-                    b.ToTable("BillDetail");
+                    b.ToTable("BillDetails");
                 });
 
             modelBuilder.Entity("WebABC.Web.Database.Entities.Customer", b =>
@@ -243,6 +245,9 @@ namespace WebABC.Web.Migrations
                         .HasAnnotation("SqlServer:IdentitySeed", 1)
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("Context")
+                        .HasColumnType("text");
+
                     b.Property<string>("Image")
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
@@ -250,6 +255,9 @@ namespace WebABC.Web.Migrations
                     b.Property<string>("Link")
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
+
+                    b.Property<int>("Sale")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -346,7 +354,7 @@ namespace WebABC.Web.Migrations
                 {
                     b.HasOne("WebABC.Web.Database.Entities.Bill", "Bill")
                         .WithMany("BillDetails")
-                        .HasForeignKey("IdProduct")
+                        .HasForeignKey("IdBill")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

@@ -35,11 +35,11 @@
                 <div class="ht-left">
                     <div class="mail-service">
                         <i class=" fa fa-envelope"></i>
-                        hello.colorlib@gmail.com
+                        truongthanhtu.it.1998@gmail.com
                     </div>
                     <div class="phone-service">
                         <i class=" fa fa-phone"></i>
-                        +65 11.188.888
+                        035-9077-335
                     </div>
                 </div>
                 <div class="ht-right">
@@ -58,7 +58,7 @@
                 <div class="row">
                     <div class="col-lg-2 col-md-2">
                         <div class="logo">
-                            <a href="./index.html">
+                            <a asp-controller="Home" asp-action="Index">
                                 <img src="~/publics/img/logo.png" alt="">
                             </a>
                         </div>
@@ -66,10 +66,10 @@
                     <div class="col-lg-7 col-md-7">
                         <div class="advanced-search">
                             <button type="button" class="category-btn">All Categories</button>
-                            <div class="input-group">
-                                <input type="text" placeholder="What do you need?">
-                                <button type="button"><i class="ti-search"></i></button>
-                            </div>
+                            <form class="input-group" action="/Shop/Index" method="get">
+                                <input type="text" name="cat" placeholder="What do you need?">
+                                <button type="submit"><i class="ti-search"></i></button>
+                            </form>
                         </div>
                     </div>
                     <div class="col-lg-3 text-right col-md-3">
@@ -77,50 +77,26 @@
                             <li class="cart-icon">
                                 <a href="#">
                                     <i class="icon_bag_alt"></i>
-                                    <span>3</span>
+                                    <span class="number_cart">0</span>
                                 </a>
                                 <div class="cart-hover">
                                     <div class="select-items">
                                         <table>
-                                            <tbody>
-                                                <tr>
-                                                    <td class="si-pic"><img src="~/publics/img/select-product-1.jpg" alt=""></td>
-                                                    <td class="si-text">
-                                                        <div class="product-selected">
-                                                            <p>$60.00 x 1</p>
-                                                            <h6>Kabino Bedside Table</h6>
-                                                        </div>
-                                                    </td>
-                                                    <td class="si-close">
-                                                        <i class="ti-close"></i>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="si-pic"><img src="~/publics/img/select-product-2.jpg" alt=""></td>
-                                                    <td class="si-text">
-                                                        <div class="product-selected">
-                                                            <p>$60.00 x 1</p>
-                                                            <h6>Kabino Bedside Table</h6>
-                                                        </div>
-                                                    </td>
-                                                    <td class="si-close">
-                                                        <i class="ti-close"></i>
-                                                    </td>
-                                                </tr>
+                                            <tbody id="cart">
                                             </tbody>
                                         </table>
                                     </div>
                                     <div class="select-total">
                                         <span>total:</span>
-                                        <h5>$120.00</h5>
+                                        <h5 class="total">0</h5>
                                     </div>
                                     <div class="select-button">
                                         <a asp-controller="Shop" asp-action="ShoppingCart" class="primary-btn view-card">VIEW CARD</a>
-                                        <a asp-controller="Shop" asp-action="CheckOut"  class="primary-btn checkout-btn">CHECK OUT</a>
+                                        <a asp-controller="Shop" asp-action="CheckOut" class="primary-btn checkout-btn">CHECK OUT</a>
                                     </div>
                                 </div>
                             </li>
-                            <li class="cart-price">$150.00</li>
+                            <li class="cart-price total">0</li>
                         </ul>
                     </div>
                 </div>
@@ -261,18 +237,42 @@
     <script src="~/publics/js/jquery.slicknav.js"></script>
     <script src="~/publics/js/owl.carousel.min.js"></script>
     <script src="~/publics/js/main.js"></script>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    @RenderSection("Scripts", required: false)
     <script>
         $(document).ready(function () {
-
-            var arrUri = ["home","shop","introduce","contact"]
+            viewItemCartCheckOut()
+        })
+        const viewItemCartCheckOut = () => {
+            $.ajax({
+                url: "/shop/getitemcart",
+                data: {
+                },
+                success: function (data) {
+                    var result = data
+                    if (result.length != 0) {
+                        var tatol = 0;
+                        data.map(function (item) {
+                            var context = "<li class=\"fw-normal\">" + item.name + " x " + item.qty + "<span>$" + item.total + ".00</span></li>"
+                            $(".order-table-item").append(context)
+                            tatol = tatol + (item.price * item.qty);
+                        })
+                        $(".total-price-span").text("$"+tatol+".00");
+                    }
+                },
+            })
+        }
+        $(document).ready(function () {
+            viewCartItem();
+            var arrUri = ["home", "shop", "introduce", "contact"]
             var uri = $(location).attr("href");
             var result = "";
             arrUri.map(function (item) {
 
                 if (uri.toLowerCase().includes(item.toLowerCase())) {
                     result = item;
-                } 
+                }
             })
             if (result == "") {
                 $(".home").addClass("active");
@@ -281,6 +281,101 @@
             }
 
         });
+
+        $(document).ready(function () {
+            $(".filter-control ul li").on("click", function () {
+                var tag = $(this).text();
+                $(".filter-control ul li").removeClass("active");
+                $(this).addClass("active");
+
+            });
+        })
+
+        var id = $(this).data("item");
+        $(document).ready(function () {
+
+            $(".w-icon .item").on("click", function () {
+                $.ajax({
+                    url: "shop/addtocart",
+                    data: {
+                        id: $(this).data("item"),
+                        qty: 1,
+                        type: "ajax"
+                    },
+                    success: function (data) {
+                        var result = data.length
+
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Add product success',
+                            showConfirmButton: false,
+                            timer: 2500
+                        });
+
+                        viewCartItem();
+                    },
+                    error: function () {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Add product error',
+                            text: 'Add to cart',
+                            showConfirmButton: false,
+                            timer: 2500
+                        });
+                    }
+                })
+            })
+        });
+        const viewCartItem = () => {
+            $.ajax({
+                url: "shop/getitemcart",
+                data: {
+                },
+                success: function (data) {
+                    var result = data
+                    if (result.length != 0) {
+                        var data = result;
+                        var tatol = 0;
+                        var number_cart = 0;
+                        $(".cart-item").remove();
+                        data.map(function (item) {
+                            var context = "<tr class=\"cart-item\"> <td class=\"si-pic\"><img src=\"publics/img/products/" + item.image + "\" alt=\"\"></td> <td class=\"si-text\"><div class=\"product - selected\"><p>$" + item.price + ".00 x " + item.qty + "</p> <h6>" + item.name + "</h6></div></td>/tr>";
+                            addItem("#cart", context);
+                            tatol = tatol + (item.price * item.qty);
+                            number_cart = number_cart + 1;
+                        })
+                        $(".total").text("$" + tatol + ".00");
+                        $(".number_cart").text(number_cart);
+                    }
+                },
+            })
+        }
+        $(document).ready(function () {
+            $(".ti-close").on("click", function () {
+                $.ajax({
+                    url: "/shop/DeleteItemCart",
+                    data: {
+                        id: $(this).data("item"),
+                    },
+                    success: function (data) {
+                        location.reload();
+                        viewCartItem();
+                    },
+                    error: function () {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Delete product error',
+                            showConfirmButton: false,
+                            timer: 2500
+                        });
+                    }
+                })
+            })
+        })
+        const addItem = (key, value) => {
+            $(key).append(value)
+        }
+
     </script>
 </body>
 </html>

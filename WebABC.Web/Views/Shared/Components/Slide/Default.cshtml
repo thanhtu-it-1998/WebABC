@@ -1,0 +1,20 @@
+﻿@model IEnumerable<SlideDto>
+
+<div class="hero-items owl-carousel">
+    @foreach (var item in Model)
+    {
+        <div class="single-hero-items set-bg" data-setbg="publics/img/@item.Link">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-5">
+                        @Html.Raw(item.Context)
+                    </div>
+                </div>
+                <div class="off-card">
+                    <h2>Sale <span>@item.Sale%</span></h2>
+                </div>
+            </div>
+        </div>
+    }
+
+</div>

@@ -26,8 +26,15 @@ using WebABC.Web.Models;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 3 "D:\vs-workspace\dev\WebABC\WebABC.Web\Views\_ViewImports.cshtml"
+using WebABC.Web.Dto;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"abdc16a5e5d7da1687ac1381960bf01602fc5ed9", @"/Views/Contact/Index.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"b95dd7fdc71a9eef0e7b13b4fce3157d7eb13b40", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"f29df2f048a6f955f9b24a7e2fb998cca5b26226", @"/Views/_ViewImports.cshtml")]
     public class Views_Contact_Index : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("action", new global::Microsoft.AspNetCore.Html.HtmlString("#"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -143,7 +150,7 @@ using WebABC.Web.Models;
             <div class=""col-lg-6 offset-lg-1"">
                 <d");
             WriteLiteral("iv class=\"contact-form\">\r\n                    <div class=\"leave-comment\">\r\n                        <h4>Leave A Comment</h4>\r\n                        <p>Our staff will call back later and answer your questions.</p>\r\n                        ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "abdc16a5e5d7da1687ac1381960bf01602fc5ed97565", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "abdc16a5e5d7da1687ac1381960bf01602fc5ed97732", async() => {
                 WriteLiteral(@"
                             <div class=""row"">
                                 <div class=""col-lg-6"">

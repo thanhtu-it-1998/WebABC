@@ -24,7 +24,6 @@ D:\vs-workspace\dev\WebABC\WebABC.Web\obj\Debug\net5.0\WebABC.Web.TagHelpers.inp
 D:\vs-workspace\dev\WebABC\WebABC.Web\obj\Debug\net5.0\WebABC.Web.TagHelpers.output.cache
 D:\vs-workspace\dev\WebABC\WebABC.Web\obj\Debug\net5.0\WebABC.Web.RazorCoreGenerate.cache
 D:\vs-workspace\dev\WebABC\WebABC.Web\obj\Debug\net5.0\Razor\Views\Home\Index.cshtml.g.cs
-D:\vs-workspace\dev\WebABC\WebABC.Web\obj\Debug\net5.0\Razor\Views\Home\Privacy.cshtml.g.cs
 D:\vs-workspace\dev\WebABC\WebABC.Web\obj\Debug\net5.0\Razor\Views\Shared\Error.cshtml.g.cs
 D:\vs-workspace\dev\WebABC\WebABC.Web\obj\Debug\net5.0\Razor\Views\Shared\_Layout.cshtml.g.cs
 D:\vs-workspace\dev\WebABC\WebABC.Web\obj\Debug\net5.0\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
@@ -161,3 +160,9 @@ D:\vs-workspace\dev\WebABC\WebABC.Web\obj\Debug\net5.0\Razor\Areas\Admin\Views\A
 D:\vs-workspace\dev\WebABC\WebABC.Web\obj\Debug\net5.0\Razor\Areas\Admin\Views\Bill\Index.cshtml.g.cs
 D:\vs-workspace\dev\WebABC\WebABC.Web\obj\Debug\net5.0\Razor\Areas\Admin\Views\Product\Index.cshtml.g.cs
 D:\vs-workspace\dev\WebABC\WebABC.Web\obj\Debug\net5.0\Razor\Areas\Admin\Views\Product\TypeProduct.cshtml.g.cs
+D:\vs-workspace\dev\WebABC\WebABC.Web\obj\Debug\net5.0\Razor\Views\Shared\Components\Slide\Default.cshtml.g.cs
+D:\vs-workspace\dev\WebABC\WebABC.Web\obj\Debug\net5.0\Razor\Views\Shared\Components\Banner\Default.cshtml.g.cs
+D:\vs-workspace\dev\WebABC\WebABC.Web\obj\Debug\net5.0\Razor\Views\Shared\Components\_Product.cshtml.g.cs
+D:\vs-workspace\dev\WebABC\WebABC.Web\obj\Debug\net5.0\Razor\Views\Shared\Components\TypeProduct\Default.cshtml.g.cs
+D:\vs-workspace\dev\WebABC\WebABC.Web\obj\Debug\net5.0\Razor\Views\Shared\Components\_ItemCart.cshtml.g.cs
+D:\vs-workspace\dev\WebABC\WebABC.Web\obj\Debug\net5.0\Razor\Views\Shop\Successfully.cshtml.g.cs

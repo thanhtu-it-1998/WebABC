@@ -17,6 +17,7 @@ namespace WebABC.Web.Database.Configurations
             builder.Property(item => item.Id).UseIdentityColumn();
             builder.Property(item => item.Link).HasMaxLength(100);
             builder.Property(item => item.Image).HasMaxLength(100);
+            builder.Property(item => item.Context).HasColumnType("text");
         }
     }
 }

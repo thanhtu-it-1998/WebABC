@@ -12,7 +12,7 @@ namespace WebABC.Web.Database.Configurations
     {
         public void Configure(EntityTypeBuilder<BillDetail> builder)
         {
-            builder.ToTable("BillDetail");
+            builder.ToTable("BillDetails");
             builder.HasKey(item => item.Id);
             builder.Property(item => item.Id).UseIdentityColumn();
             builder.Property(item => item.IdBill).IsRequired();
@@ -22,7 +22,7 @@ namespace WebABC.Web.Database.Configurations
             builder.Property(item => item.UpdatedAt).HasColumnType("datetime").HasDefaultValueSql("getdate()");
 
             builder.HasOne(item => item.Product).WithMany(item => item.BillDetails).HasForeignKey(item => item.IdProduct);
-            builder.HasOne(item => item.Bill).WithMany(item => item.BillDetails).HasForeignKey(item => item.IdProduct);
+            builder.HasOne(item => item.Bill).WithMany(item => item.BillDetails).HasForeignKey(item => item.IdBill);
 
 
         }

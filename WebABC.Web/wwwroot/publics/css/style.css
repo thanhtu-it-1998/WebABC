@@ -452,7 +452,7 @@ ol {
 	background: #e5e5e5;
 	content: "";
 }
-
+/*
 .inner-header .advanced-search .category-btn:after {
 	position: absolute;
 	right: 11px;
@@ -461,7 +461,7 @@ ol {
 	font-family: "ElegantIcons";
 	font-size: 16px;
 	color: #b2b2b2;
-}
+}*/
 
 .inner-header .advanced-search .input-group {
 	max-width: 70%;

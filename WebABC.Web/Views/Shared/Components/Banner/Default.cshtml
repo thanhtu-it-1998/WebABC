@@ -1,0 +1,20 @@
+﻿@model IEnumerable<TypeProductDto>
+
+
+<div class="container-fluid">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-lg-4">
+                <div class="single-banner">
+                    <a asp-controller="Shop" asp-action="Index" asp-route-cat="@item.Name">
+                        <img src="~/publics/img/@item.Image" alt="">
+                        <div class="inner-text">
+                            <h4>@item.Name</h4>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        }
+    </div>
+</div>

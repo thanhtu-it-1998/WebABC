@@ -1,0 +1,19 @@
+﻿@model CartItemDto
+
+<tr>
+    <td class="cart-pic first-row"><img src="~/publics/img/products/@Model.Image" style="height:170px;width:170px" alt=""></td>
+    <td class="cart-title first-row">
+        <h5>@Model.Name</h5>
+    </td>
+    <td class="p-price first-row">$@(Model.Price)</td>
+    <td class="qua-col first-row">
+        <div class="quantity">
+            <div class="pro-qty">
+                <input type="text" value="@Model.Qty">
+            </div>
+        </div>
+    </td>
+    <td class="total-price first-row">$@(Model.Price)</td>
+    <td class="close-td first-row"><i class="ti-close" data-item="@Model.Id"></i></td>
+</tr>
+
