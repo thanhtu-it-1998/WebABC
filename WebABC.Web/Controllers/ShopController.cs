@@ -21,9 +21,9 @@ namespace WebABC.Web.Controllers
             context = theContext;
         }
 
-        public async Task<IActionResult> Index(string? cat,string? type)
+        public async Task<IActionResult> Index(string? cat, string? type)
         {
-            
+
             var data = await this.context.Products
                 .Select(item => new ProductDto
                 {
@@ -35,12 +35,12 @@ namespace WebABC.Web.Controllers
                     PromotionPrice = item.PromotionPrice,
                     UnitPrice = item.UnitPrice
                 }).ToListAsync();
-            if(cat != null)
+            if (cat != null)
             {
                 var category = await this.context.TypeProducts.Where(item => item.Name.ToLower() == cat.ToLower()).SingleOrDefaultAsync();
-                data =  data.Where(item => item.IdType == category.Id).ToList();
+                data = data.Where(item => item.IdType == category.Id).ToList();
             }
-            if(type!= null)
+            if (type != null)
             {
                 data = data.Where(item => item.Unit.ToLower() == type.ToLower()).ToList();
             }
@@ -63,6 +63,45 @@ namespace WebABC.Web.Controllers
             return View();
         }
 
+        public async Task<IActionResult> ProductDetail(int Id)
+        {
+
+            var data = await this.context.Products
+                .Select(item => new ProductDto
+                {
+                    Id = item.Id,
+                    IdType = item.IdType,
+                    Name = item.Name,
+                    Description = item.Description,
+                    Image = item.Image,
+                    Unit = item.Unit,
+                    PromotionPrice = item.PromotionPrice,
+                    UnitPrice = item.UnitPrice
+                })
+                .Where(item => item.Id == Id)
+                .SingleOrDefaultAsync();
+            
+            ViewData["Category"] = await this.context.TypeProducts
+                .Where(item => item.Id == data.IdType)
+                .Select(item => item.Name)
+                .SingleOrDefaultAsync();
+            
+            ViewBag.RelatedProducts = await this.context.Products
+                .Where(item => item.Unit == data.Unit)
+                .Select(item => new ProductDto
+                {
+                    Id = item.Id,
+                    IdType = item.IdType,
+                    Image = item.Image,
+                    Name = item.Name,
+                    Unit = item.Unit,
+                    PromotionPrice = item.PromotionPrice,
+                    UnitPrice = item.UnitPrice
+                })
+                .Take(4)
+                .ToListAsync();
+            return View(data);
+        }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult CheckOut([FromForm] CustomerDto model)
@@ -72,14 +111,15 @@ namespace WebABC.Web.Controllers
             {
                 TempData["Error"] = "No Product In Cart";
             }
-            else {
+            else
+            {
                 if (ModelState.IsValid)
                 {
                     var myCart = Carts;
                     var idBill = SaveBill(model);
                     foreach (var item in myCart)
                     {
-                        SaveBillDetail(idBill,item);
+                        SaveBillDetail(idBill, item);
                     }
                     HttpContext.Session.Clear();
                     return RedirectToAction("Successfully");
@@ -171,24 +211,24 @@ namespace WebABC.Web.Controllers
             this.context.SaveChanges();
             return bill.Id;
         }
-        public void SaveBillDetail(int Id,CartItemDto item)
+        public void SaveBillDetail(int Id, CartItemDto item)
         {
-           
-                var billDetail = new BillDetail();
-                billDetail.IdBill = Id;
-                billDetail.IdProduct = item.Id;
-                billDetail.Quantity = item.Qty;
-                billDetail.UnitPrice = item.Total;
-                this.context.BillDetails.Add(billDetail);
-                this.context.SaveChanges();
-            
+
+            var billDetail = new BillDetail();
+            billDetail.IdBill = Id;
+            billDetail.IdProduct = item.Id;
+            billDetail.Quantity = item.Qty;
+            billDetail.UnitPrice = item.Total;
+            this.context.BillDetails.Add(billDetail);
+            this.context.SaveChanges();
+
         }
 
         public decimal GetTotalPrice()
         {
             var myCart = Carts;
             decimal total = 0;
-            foreach(var item in myCart)
+            foreach (var item in myCart)
             {
                 total = total + item.Total;
             }

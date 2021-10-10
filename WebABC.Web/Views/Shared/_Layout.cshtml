@@ -296,7 +296,7 @@
 
             $(".w-icon .item").on("click", function () {
                 $.ajax({
-                    url: "shop/addtocart",
+                    url: "/shop/addtocart",
                     data: {
                         id: $(this).data("item"),
                         qty: 1,
@@ -328,7 +328,7 @@
         });
         const viewCartItem = () => {
             $.ajax({
-                url: "shop/getitemcart",
+                url: "/shop/getitemcart",
                 data: {
                 },
                 success: function (data) {

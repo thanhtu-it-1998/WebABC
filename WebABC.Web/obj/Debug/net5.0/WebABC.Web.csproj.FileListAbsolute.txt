@@ -166,3 +166,5 @@ D:\vs-workspace\dev\WebABC\WebABC.Web\obj\Debug\net5.0\Razor\Views\Shared\Compon
 D:\vs-workspace\dev\WebABC\WebABC.Web\obj\Debug\net5.0\Razor\Views\Shared\Components\TypeProduct\Default.cshtml.g.cs
 D:\vs-workspace\dev\WebABC\WebABC.Web\obj\Debug\net5.0\Razor\Views\Shared\Components\_ItemCart.cshtml.g.cs
 D:\vs-workspace\dev\WebABC\WebABC.Web\obj\Debug\net5.0\Razor\Views\Shop\Successfully.cshtml.g.cs
+D:\vs-workspace\dev\WebABC\WebABC.Web\obj\Debug\net5.0\Razor\Views\Shared\Components\_Type.cshtml.g.cs
+D:\vs-workspace\dev\WebABC\WebABC.Web\obj\Debug\net5.0\Razor\Views\Shop\ProductDetail.cshtml.g.cs

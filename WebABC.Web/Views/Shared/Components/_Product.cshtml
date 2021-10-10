@@ -11,7 +11,7 @@
         </div>
         <ul>
             <li class="w-icon active"><a class="item" data-item="@Model.Id"><i class="icon_cart_alt"></i></a></li>
-            <li class="quick-view"><a href="#">+ Quick View</a></li>
+            <li class="quick-view"><a asp-controller="Shop" asp-action="ProductDetail" asp-route-id="@Model.Id">+ Quick View</a></li>
             <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
         </ul>
     </div>
